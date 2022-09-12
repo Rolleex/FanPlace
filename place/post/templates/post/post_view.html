@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <main class="tm-main">
+              
+            <div class="row tm-row">
+                <div class="col-12">
+                    <hr class="tm-hr-primary tm-mb-55">
+                   <img src="{{ post.image.url }}" width="450" height="350">
+                   
+                </div>
+            </div>
+            <div class="row tm-row">
+                <div class="col-lg-8 tm-post-col">
+                    <div class="tm-post-full">                    
+                        <div class="mb-4">
+                            <h2 class="pt-2 tm-color-primary tm-post-title">{{ post.title }}</h2>
+                            <p class="tm-mb-40">{{ post.created_at }} posted by {{ post.author }}</p>
+                            {% if post.free %}
+                            <p>{{ post.content}}</p>
+
+                            {% elif follow_list %}
+                            <p>{{ post.content}}</p>
+
+                            {% elif request.user == post.author %}
+                            <p>{{ post.content}}</p>
+
+                            {% else %}
+
+                               <p>{{ post.description}}</p>
+
+                            {% endif %}
+
+<!--                          <span class="d-block text-right tm-color-primary">Creative . Design . Business</span>-->
+                        </div>
+                        
+                        <!-- Comments -->
+
+                    </div>
+                </div>
+<!--                <aside class="col-lg-4 tm-aside-col">-->
+<!--                    <div class="tm-post-sidebar">-->
+<!--                        <hr class="mb-3 tm-hr-primary">-->
+<!--                        <h2 class="mb-4 tm-post-title tm-color-primary">Categories</h2>-->
+<!--                        <ul class="tm-mb-75 pl-5 tm-category-list">-->
+<!--                            <li><a href="#" class="tm-color-primary">Visual Designs</a></li>-->
+<!--                            <li><a href="#" class="tm-color-primary">Travel Events</a></li>-->
+<!--                            <li><a href="#" class="tm-color-primary">Web Development</a></li>-->
+<!--                            <li><a href="#" class="tm-color-primary">Video and Audio</a></li>-->
+<!--                            <li><a href="#" class="tm-color-primary">Etiam auctor ac arcu</a></li>-->
+<!--                            <li><a href="#" class="tm-color-primary">Sed im justo diam</a></li>-->
+<!--                        </ul>-->
+<!--                        <hr class="mb-3 tm-hr-primary">-->
+<!--                        <h2 class="tm-mb-40 tm-post-title tm-color-primary">Related Posts</h2>-->
+<!--                        <a href="#" class="d-block tm-mb-40">-->
+<!--                            <figure>-->
+<!--                                <img src="img/img-02.jpg" alt="Image" class="mb-3 img-fluid">-->
+<!--                                <figcaption class="tm-color-primary">Duis mollis diam nec ex viverra scelerisque a sit</figcaption>-->
+<!--                            </figure>-->
+<!--                        </a>-->
+<!--                        <a href="#" class="d-block tm-mb-40">-->
+<!--                            <figure>-->
+<!--                                <img src="img/img-05.jpg" alt="Image" class="mb-3 img-fluid">-->
+<!--                                <figcaption class="tm-color-primary">Integer quis lectus eget justo ullamcorper ullamcorper</figcaption>-->
+<!--                            </figure>-->
+<!--                        </a>-->
+<!--                        <a href="#" class="d-block tm-mb-40">-->
+<!--                            <figure>-->
+<!--                                <img src="img/img-06.jpg" alt="Image" class="mb-3 img-fluid">-->
+<!--                                <figcaption class="tm-color-primary">Nam lobortis nunc sed faucibus commodo</figcaption>-->
+<!--                            </figure>-->
+<!--                        </a>-->
+<!--                    </div>                    -->
+<!--                </aside>-->
+            </div>
+        </main>
+    </div>
+{% endblock %}

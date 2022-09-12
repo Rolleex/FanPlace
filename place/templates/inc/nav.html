@@ -1,0 +1,135 @@
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--  <div class="container-fluid">-->
+<!--    <a class="navbar-brand" href="#">Navbar</a>-->
+<!--    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--      <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--    <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--      <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" href="#">Link</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item dropdown">-->
+<!--          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--            Dropdown-->
+<!--          </a>-->
+<!--          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--            <li><a class="dropdown-item" href="#">Action</a></li>-->
+<!--            <li><a class="dropdown-item" href="#">Another action</a></li>-->
+<!--            <li><hr class="dropdown-divider"></li>-->
+<!--            <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+<!--          </ul>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--{% if user.is_authenticated %}-->
+<!--{{ request.user.profile.monet }}-->
+<!--          <li class="nav-item">-->
+<!--          <a class="nav-link" href="{% url 'create_post' %}">Create</a>-->
+<!--        </li>-->
+<!--         <li class="nav-item">-->
+<!--          <a class="nav-link" href="{% url 'edit-profile' %}">Редактировать профиль</a>-->
+<!--        </li>-->
+<!--        <li class="navbar-text">-->
+<!--            <a aria-current="page" href="{% url 'profile' request.user.profile.slug %}">{{ request.user}}</a>-->
+<!--        </li>-->
+<!--        &nbsp;&nbsp;&nbsp;-->
+<!--        <li class="navbar-text">-->
+<!--            <a aria-current="page" href="{% url 'account_logout' %}">Выход</a>-->
+<!--        </li>-->
+
+<!--        {% else %}-->
+<!--        <li class="navbar-text">-->
+<!--            <a class="nav-link active" aria-current="page" href="{% url 'account_login' %}">Войти</a>-->
+<!--        </li>-->
+<!--        <li class="navbar-text">-->
+<!--            <a class="navbar-text" aria-current="page" href="{% url 'account_signup' %}">Зарегестрироваться</a>-->
+<!--        </li>-->
+
+<!--        {% endif %}-->
+<!--&lt;!&ndash;      <form class="d-flex">&ndash;&gt;-->
+<!--&lt;!&ndash;        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">&ndash;&gt;-->
+<!--&lt;!&ndash;        <button class="btn btn-outline-success" type="submit">Search</button>&ndash;&gt;-->
+<!--&lt;!&ndash;      </form>&ndash;&gt;-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</nav>-->
+
+<header class="tm-header" id="tm-header">
+    <div class="tm-header-wrapper">
+        <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="tm-site-header">
+            {% if user.is_authenticated %}
+            {% if request.user.profile.photo %}
+            <div class="row justify-content-center">
+                <a href="{% url 'profile' request.user.profile.slug %}"> <img src="{{ request.user.profile.photo.url }}"
+                                                                              width="110" height="110"
+                                                                              class="rounded-circle"></a>
+            </div>
+            {% else %}
+            <img src="https://picsum.photos/id/1060/250/235/?blur=2" alt="" class="mr-3">
+            {% endif %}
+
+           <h1 class="text-center">{{ request.user }}  <a href="{% url 'add_coins' %}">{{ request.user.profile.monet }}</a></h1>
+
+            {% else %}
+            <div class="mb-3 mx-auto tm-site-logo"><i class="fas fa-times fa-2x"></i></div>
+            <h1 class="text-center">Fan Place</h1>
+            {% endif %}
+        </div>
+        <nav class="tm-nav" id="tm-nav">
+            <ul>
+                <li class="tm-nav-item active"><a href="{% url 'home' %}" class="tm-nav-link">
+                    <i class="fas fa-home"></i>
+                    Новое
+                </a></li>
+                {% if user.is_authenticated %}
+                <li class="tm-nav-item"><a href="{% url 'feed' %}" class="tm-nav-link">
+                    <i class="fas fa-pen"></i>
+                    Новости
+                </a></li>
+                <li class="tm-nav-item"><a href="{% url 'create_post' %}" class="tm-nav-link">
+                    <i class="fas fa-users"></i>
+                    Создать пост
+                </a></li>
+
+                <li class="tm-nav-item"><a href="{% url 'edit-profile' %}" class="tm-nav-link">
+                    <i class="far fa-comments"></i>
+                    Редактировать профиль
+                </a></li>
+                 {% if user.is_staff %}
+                  <li class="tm-nav-item"><a href="{% url 'dashboard' %}" class="tm-nav-link">
+                    <i class="far fa-comments"></i>
+                    Заявки
+                </a></li>
+                {% endif %}
+                <li class="tm-nav-item"><a href="{% url 'account_logout' %}" class="tm-nav-link">
+                    <i class="far fa-comments"></i>
+                    Выход
+                </a></li>
+
+                {% else %}
+                <li class="tm-nav-item"><a href="{% url 'account_login' %}" class="tm-nav-link">
+                    <i class="far fa-comments"></i>
+                    Войти
+                </a></li>
+                <li class="tm-nav-item"><a href="{% url 'account_signup' %}" class="tm-nav-link">
+                    <i class="far fa-comments"></i>
+                    Регистрация
+                </a></li>
+
+                {% endif %}
+            </ul>
+        </nav>
+        <!--            <p class="tm-mb-80 pr-5 text-white">-->
+        <!--                Xtra Blog is a multi-purpose HTML template from TemplateMo website. Left side is a sticky menu bar. Right side content will scroll up and down.-->
+        <!--            </p>-->
+    </div>
+</header>

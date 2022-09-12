@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <main class="tm-main">
+        <div class="row tm-row">
+                <div class="col-12">
+                    <form method="GET" action="{% url 'search'%}" class="form-inline tm-mb-80 tm-search-form">
+                        <input class="form-control tm-search-input" name="query" type="text" placeholder="Search..." aria-label="Search">
+                        <button class="tm-search-button" type="submit">
+                            <i class="fas fa-search tm-search-icon" aria-hidden="true"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        <div class="row tm-row">
+                {% for people in peopls %}
+                <article class="col-12 col-md-6 tm-post">
+                    <hr class="tm-hr-primary">
+                    <a href="{% url 'profile' people.slug %}" class="effect-lily tm-post-link tm-pt-60">
+                        <div class="tm-post-link-inner">
+                            {% if people.photo %}
+                            <div class="row justify-content-center">
+                                <img src="{{ people.photo.url }}"   >
+                            </div>
+                            {% else %}
+                            <img src="https://picsum.photos/id/1060/250/235/?blur=2" alt="" class="mr-3">
+                            {% endif %}
+                        </div>
+                        <h2 class="tm-pt-30 tm-color-primary tm-post-title">{{ people.user }}</h2>
+                    </a>
+                    <hr>
+                </article>
+                {% endfor %}
+            </div>
+
+
+        <div class="row tm-row">
+            {% for post in results %}
+            <article class="col-12 col-md-6 tm-post">
+                <hr class="tm-hr-primary">
+                <a href="{% url 'post' post.slug %}" class="effect-lily tm-post-link tm-pt-60">
+                    <div class="tm-post-link-inner">
+                        <img src="{{ post.image.url }}" alt="Image" class="img-fluid">
+                    </div>
+                    {% if post.free %}
+                    <span class="position-absolute tm-new-badge">Free</span>
+                    {% endif %}
+                    <h2 class="tm-pt-30 tm-color-primary tm-post-title">{{ post.title }}</h2>
+                </a>
+                <p class="tm-pt-30">
+                    {{ post.description }}
+                </p>
+                <div class="d-flex justify-content-between tm-pt-45">
+                    <!--                        <span class="tm-color-primary">Travel . Events</span>-->
+                    <span class="tm-color-primary">{{ post.created_at }}</span>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between">
+                    <!--                        <span>36 comments</span>-->
+                    <span>{{ post.author}}</span>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </main>
+</div>
+{% endblock %}

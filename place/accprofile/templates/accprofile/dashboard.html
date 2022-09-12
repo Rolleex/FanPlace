@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+    <main class="tm-main">
+        <h3>Необработанные заявки</h3>
+        <table class="table table-hover tabel-striped">
+            <thead>
+            <tr>
+                <th scope="col">Номер заказа</th>
+                <th scope="col">Цена</th>
+                <th scope="col">Имя</th>
+                     </tr>
+            </thead>
+            <tbody>
+            {% for order in orders %}
+            <tr>
+                <th scope="row">{{ order.pk }}</th>
+                <td>{{ order.price }}</td>
+                <td><a href="{% url 'order-details' order.pk %}">{{ order.reciver }}</a></td>
+
+                <td><a href="{% url 'order-details' order.pk %}"><i class="far fa-edit"></i> </a></td>
+
+
+            </tr>
+            {% endfor %}
+            </tbody>
+
+
+        </table>
+    </main>
+</div>
+{% endblock%}

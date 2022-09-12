@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+    <main class="tm-main">
+  <div class="col-md-6 col-sm-12 text-center mt-3">
+            <p><span style="font-weight: 400;">Имя:</span> {{ order.reciver }}</p>
+
+                 <p><span style="font-weight: 400;">Количество монет:</span> {{ order.price }}</p>
+                </div>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-success">Одобрить</button>
+        </form>
+
+
+    </main>
+</div>
+{% endblock%}
