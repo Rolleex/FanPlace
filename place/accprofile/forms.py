@@ -15,7 +15,7 @@ class EditForm(forms.ModelForm):
 
 
 class SignupForm(forms.Form):
-
+    """change form for create profile with user"""
     def signup(self, request, user):
         profile = Profile()
         profile.user = user

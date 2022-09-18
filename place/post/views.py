@@ -62,6 +62,9 @@ class Search(View):
 
 
 def pay(request, slug):
+    """
+    subscribe func
+    """
     owner = Profile.objects.get(slug=slug)
 
     payscore = request.user.profile.monet

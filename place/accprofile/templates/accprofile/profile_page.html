@@ -25,7 +25,7 @@
             <div class="col-12">
                 <hr class="tm-hr-primary tm-mb-55">
                 <h1 class="text-center">{{ profile.user}}</h1>
-                <a href="{% url 'pay' profile.slug%}" class="btn btn-primary">Follow</a>
+                <h3 class="text-center"><a href="{% url 'pay' profile.slug%}" class="btn btn-primary">Подписаться за {{profile.subprice}} монет</a></h3>
                 <h3 class="text-center">{{ posts.count }}Post</h3>
                 <h3 class="text-center">Читает кого&nbsp;{{ profile.user.follower.count }}</h3>
                 <h3 class="text-center">author&nbsp;{{ profile.user.author.count }}</h3>

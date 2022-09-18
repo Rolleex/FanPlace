@@ -67,6 +67,10 @@ class Add(LoginRequiredMixin, CreateView):
 
 
 class Dashboard(LoginRequiredMixin, View):
+    """
+    for staff. check orders for aad coins
+    """
+
     def get(self, request, *args, **kwargs):
         if request.user.is_staff:
             orders = CoinsModel.objects.filter(is_paid=False)
@@ -102,4 +106,4 @@ class OrderDetails(LoginRequiredMixin, View):
         context = {
             'order': order
         }
-        return render(request, 'accprofile/dashboard.html', context)
+        return redirect('dashboard')
