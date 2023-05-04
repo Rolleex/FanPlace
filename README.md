@@ -49,9 +49,7 @@ ____
 ____
 ![image](https://user-images.githubusercontent.com/26228130/190905109-dbc32cc3-50ca-4c9e-9ca8-7a7523c1282d.png)
 ____
-U can make new user or take my staff user
-- login "Simon"
-- password "Koroleva1"
+
 ____
 ### Sidebar
 ![image](https://user-images.githubusercontent.com/26228130/190906589-9f357729-deb9-4600-bc57-1353dccdefd6.png) 
